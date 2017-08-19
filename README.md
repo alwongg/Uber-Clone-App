@@ -28,3 +28,5 @@ return true
 }
 
 ```
+
+* Import FirebaseAuth to enable login and sign up features

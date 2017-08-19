@@ -13,6 +13,7 @@
 		FA9745421F47AC1300CA45AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA9745401F47AC1300CA45AA /* Main.storyboard */; };
 		FA9745441F47AC1300CA45AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA9745431F47AC1300CA45AA /* Assets.xcassets */; };
 		FA9745471F47AC1300CA45AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA9745451F47AC1300CA45AA /* LaunchScreen.storyboard */; };
+		FA97454F1F47B05400CA45AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA97454E1F47AC8600CA45AA /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA9745471F47AC1300CA45AA /* LaunchScreen.storyboard in Resources */,
+				FA97454F1F47B05400CA45AA /* GoogleService-Info.plist in Resources */,
 				FA9745441F47AC1300CA45AA /* Assets.xcassets in Resources */,
 				FA9745421F47AC1300CA45AA /* Main.storyboard in Resources */,
 			);
@@ -351,6 +353,7 @@
 			baseConfigurationReference = 082708E898CCD2F867C1E352 /* Pods-Uber Clone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7DZAV3VM24;
 				INFOPLIST_FILE = "Uber Clone/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alwongg.Uber-Clone";
@@ -365,6 +368,7 @@
 			baseConfigurationReference = E992DE9C46B2D8C49155C325 /* Pods-Uber Clone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7DZAV3VM24;
 				INFOPLIST_FILE = "Uber Clone/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alwongg.Uber-Clone";
