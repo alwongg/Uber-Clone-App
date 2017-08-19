@@ -30,3 +30,4 @@ return true
 ```
 
 * Import FirebaseAuth to enable login and sign up features
+* Import FirebaseDatabase to store driver and rider locations and requests

@@ -15,6 +15,7 @@
 		FA9745471F47AC1300CA45AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA9745451F47AC1300CA45AA /* LaunchScreen.storyboard */; };
 		FA97454F1F47B05400CA45AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA97454E1F47AC8600CA45AA /* GoogleService-Info.plist */; };
 		FAAEA16E1F4821E400A3A6E1 /* DriverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAEA16D1F4821E400A3A6E1 /* DriverTableViewController.swift */; };
+		FAAEA1701F482A5400A3A6E1 /* AcceptRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAEA16F1F482A5400A3A6E1 /* AcceptRequestViewController.swift */; };
 		FACBD4931F47F00B0023320A /* RiderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBD4921F47F00B0023320A /* RiderViewController.swift */; };
 		FAFA95A71F47EEB00063B3B1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA9745481F47AC1300CA45AA /* Info.plist */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		FA9745481F47AC1300CA45AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA97454E1F47AC8600CA45AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FAAEA16D1F4821E400A3A6E1 /* DriverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTableViewController.swift; sourceTree = "<group>"; };
+		FAAEA16F1F482A5400A3A6E1 /* AcceptRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptRequestViewController.swift; sourceTree = "<group>"; };
 		FACBD4921F47F00B0023320A /* RiderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +101,7 @@
 				FA97453E1F47AC1300CA45AA /* LoginViewController.swift */,
 				FACBD4921F47F00B0023320A /* RiderViewController.swift */,
 				FAAEA16D1F4821E400A3A6E1 /* DriverTableViewController.swift */,
+				FAAEA16F1F482A5400A3A6E1 /* AcceptRequestViewController.swift */,
 			);
 			name = Controller;
 			path = ..;
@@ -261,6 +264,7 @@
 				FAAEA16E1F4821E400A3A6E1 /* DriverTableViewController.swift in Sources */,
 				FACBD4931F47F00B0023320A /* RiderViewController.swift in Sources */,
 				FA97453D1F47AC1300CA45AA /* AppDelegate.swift in Sources */,
+				FAAEA1701F482A5400A3A6E1 /* AcceptRequestViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

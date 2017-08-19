@@ -12,11 +12,12 @@ import FirebaseDatabase
 import MapKit
 
 class DriverTableViewController: UITableViewController, CLLocationManagerDelegate {
-
+    
     
     var rideRequests: [DataSnapshot] = []
     var locationManager = CLLocationManager()
     var driverLocation = CLLocationCoordinate2D()
+    
     
     @IBAction func logoutUser(_ sender: Any) {
         // get out of firebase
@@ -25,7 +26,7 @@ class DriverTableViewController: UITableViewController, CLLocationManagerDelegat
         // Go back to login screen via navigationcontroller
         
         navigationController?.dismiss(animated: true, completion: nil)
-
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +40,13 @@ class DriverTableViewController: UITableViewController, CLLocationManagerDelegat
             self.rideRequests.append(snapshot)
             self.tableView.reloadData()
         }
-
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+            self.tableView.reloadData()
+        }
+        
     }
-
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // find driver's location
         
@@ -52,22 +57,23 @@ class DriverTableViewController: UITableViewController, CLLocationManagerDelegat
             
         }
     }
-
+    
     // MARK: - Table view data source
-
-
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return rideRequests.count
     }
-
-   
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rideRequestCell", for: indexPath)
-
+        
         // Configure the cell...
-
+        
         let snapshot = rideRequests[indexPath.row]
+        
         if let rideRequestsDictionary = snapshot.value as? [String:AnyObject]{
             
             if let email = rideRequestsDictionary["email"] as? String {
@@ -101,5 +107,42 @@ class DriverTableViewController: UITableViewController, CLLocationManagerDelegat
         
         return cell
     }
-
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let snapshot = rideRequests[indexPath.row]
+        performSegue(withIdentifier: "acceptSegue", sender: snapshot)
+    }
+    
+    // REVIEW THIS ASAP
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let acceptViewController = segue.destination as? AcceptRequestViewController{
+            
+            if let snapshot = sender as? DataSnapshot {
+                
+                if let rideRequestsDictionary = snapshot.value as? [String:AnyObject]{
+                    
+                    if let email = rideRequestsDictionary["email"] as? String {
+                        
+                        if let lat = rideRequestsDictionary["lat"] as? Double {
+                            if let lon = rideRequestsDictionary["lon"] as? Double{
+                                
+                                acceptViewController.requestEmail = email
+                                let location = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                                acceptViewController.requestLocation = location
+                                acceptViewController.driverLocation = driverLocation
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+                
+            }
+        }
+    }
+    
 }
