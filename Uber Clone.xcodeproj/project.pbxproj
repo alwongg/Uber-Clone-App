@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		896483E8F5DA3703ACF44815 /* Pods_Uber_Clone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ECB819B690CF32D9B73C2D /* Pods_Uber_Clone.framework */; };
 		FA97453D1F47AC1300CA45AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97453C1F47AC1300CA45AA /* AppDelegate.swift */; };
-		FA97453F1F47AC1300CA45AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97453E1F47AC1300CA45AA /* ViewController.swift */; };
+		FA97453F1F47AC1300CA45AA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97453E1F47AC1300CA45AA /* LoginViewController.swift */; };
 		FA9745421F47AC1300CA45AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA9745401F47AC1300CA45AA /* Main.storyboard */; };
 		FA9745441F47AC1300CA45AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA9745431F47AC1300CA45AA /* Assets.xcassets */; };
 		FA9745471F47AC1300CA45AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA9745451F47AC1300CA45AA /* LaunchScreen.storyboard */; };
 		FA97454F1F47B05400CA45AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA97454E1F47AC8600CA45AA /* GoogleService-Info.plist */; };
+		FAAEA16E1F4821E400A3A6E1 /* DriverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAEA16D1F4821E400A3A6E1 /* DriverTableViewController.swift */; };
+		FACBD4931F47F00B0023320A /* RiderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBD4921F47F00B0023320A /* RiderViewController.swift */; };
+		FAFA95A71F47EEB00063B3B1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA9745481F47AC1300CA45AA /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,12 +25,14 @@
 		E992DE9C46B2D8C49155C325 /* Pods-Uber Clone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uber Clone.release.xcconfig"; path = "Pods/Target Support Files/Pods-Uber Clone/Pods-Uber Clone.release.xcconfig"; sourceTree = "<group>"; };
 		FA9745391F47AC1300CA45AA /* Uber Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Uber Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA97453C1F47AC1300CA45AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FA97453E1F47AC1300CA45AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FA97453E1F47AC1300CA45AA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FA9745411F47AC1300CA45AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA9745431F47AC1300CA45AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA9745461F47AC1300CA45AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA9745481F47AC1300CA45AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA97454E1F47AC8600CA45AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FAAEA16D1F4821E400A3A6E1 /* DriverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTableViewController.swift; sourceTree = "<group>"; };
+		FACBD4921F47F00B0023320A /* RiderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,15 +85,52 @@
 		FA97453B1F47AC1300CA45AA /* Uber Clone */ = {
 			isa = PBXGroup;
 			children = (
-				FA97453C1F47AC1300CA45AA /* AppDelegate.swift */,
-				FA97453E1F47AC1300CA45AA /* ViewController.swift */,
+				FACBD4911F47EF6F0023320A /* Model */,
+				FACBD4901F47EF640023320A /* View */,
+				FACBD48F1F47EF5A0023320A /* Controller */,
+				FAFA95A81F47EF3E0063B3B1 /* Supporting Files */,
+			);
+			path = "Uber Clone";
+			sourceTree = "<group>";
+		};
+		FACBD48F1F47EF5A0023320A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA97453E1F47AC1300CA45AA /* LoginViewController.swift */,
+				FACBD4921F47F00B0023320A /* RiderViewController.swift */,
+				FAAEA16D1F4821E400A3A6E1 /* DriverTableViewController.swift */,
+			);
+			name = Controller;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		FACBD4901F47EF640023320A /* View */ = {
+			isa = PBXGroup;
+			children = (
 				FA9745401F47AC1300CA45AA /* Main.storyboard */,
+			);
+			name = View;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		FACBD4911F47EF6F0023320A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FAFA95A81F47EF3E0063B3B1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA97453C1F47AC1300CA45AA /* AppDelegate.swift */,
 				FA9745431F47AC1300CA45AA /* Assets.xcassets */,
 				FA9745451F47AC1300CA45AA /* LaunchScreen.storyboard */,
 				FA97454E1F47AC8600CA45AA /* GoogleService-Info.plist */,
 				FA9745481F47AC1300CA45AA /* Info.plist */,
 			);
-			path = "Uber Clone";
+			name = "Supporting Files";
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +197,7 @@
 				FA9745471F47AC1300CA45AA /* LaunchScreen.storyboard in Resources */,
 				FA97454F1F47B05400CA45AA /* GoogleService-Info.plist in Resources */,
 				FA9745441F47AC1300CA45AA /* Assets.xcassets in Resources */,
+				FAFA95A71F47EEB00063B3B1 /* Info.plist in Resources */,
 				FA9745421F47AC1300CA45AA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,7 +257,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA97453F1F47AC1300CA45AA /* ViewController.swift in Sources */,
+				FA97453F1F47AC1300CA45AA /* LoginViewController.swift in Sources */,
+				FAAEA16E1F4821E400A3A6E1 /* DriverTableViewController.swift in Sources */,
+				FACBD4931F47F00B0023320A /* RiderViewController.swift in Sources */,
 				FA97453D1F47AC1300CA45AA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,7 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7DZAV3VM24;
-				INFOPLIST_FILE = "Uber Clone/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alwongg.Uber-Clone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -369,7 +414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7DZAV3VM24;
-				INFOPLIST_FILE = "Uber Clone/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alwongg.Uber-Clone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
