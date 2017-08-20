@@ -31,14 +31,14 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
         
         // Do any additional setup after loading the view.
         
-        // Working with locations
+        // working with locations, getting best accuracy of location and always updating location
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        // check if there is a current ride request when user logs in so they can see "cancel" instead of "call"
+        // check if there is a current ride request when user logs in so they can see "cancel" instead of "call" an uber
         
         if let email = Auth.auth().currentUser?.email{
             Database.database().reference().child("RideRequests").queryOrdered(byChild: "email").queryEqual(toValue: email).observe(.childAdded, with: { (snapshot) in
@@ -54,18 +54,25 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    // MARK: - IBActions
+    
+    // MARK: - Call an Uber method
+    
     @IBAction func callUber(_ sender: Any) {
         
-        // Get email of user so we can send user's coordinates to database to tell uber driver
+        // get email of user so we can send user's coordinates to database to give rider info to uber driver
         if let email = Auth.auth().currentUser?.email{
             
+            // now we have the email of the user, check if the user has called for an uber
+            // if the user has called for an uber, do the following:
             if uberHasBeenCalled {
            
+                // uber has been called, user can only cancel request so when user presses button, they are pressing "Cancel Uber"
+                // "Cancel Uber" pressed, change uberHasBeenCalled property to false and change title back to "Call an Uber"
                 uberHasBeenCalled = false
                 callUberButton.setTitle("Call an Uber", for: .normal)
                 
-                // Cancel from the database
-                
+                // UI Update finished but now need to cancel the uber request in Firebase database
                 Database.database().reference().child("RideRequests").queryOrdered(byChild: "email").queryEqual(toValue: email).observe(.childAdded, with: { (snapshot) in
                     snapshot.ref.removeValue()
                     
@@ -75,59 +82,59 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
                 
             } else {
                 
-                let rideRequestDictionary: [String: Any] = ["email": email, "lat":userLocation.latitude, "lon":userLocation.longitude]
+                // no request has been made by user so when tapped, put a request in to database to call an uber
+                let rideRequestDictionary: [String: Any] = ["email": email, "lat": userLocation.latitude, "lon": userLocation.longitude]
                 Database.database().reference().child("RideRequests").childByAutoId().setValue(rideRequestDictionary)
                 
+                // after calling an uber, the state of uberHasBeenCalled is set to true
+                // change title of button to "Cancel Uber" after calling an Uber
                 uberHasBeenCalled = true
                 callUberButton.setTitle("Cancel Uber", for: .normal)
                 
-                
             }
-            
-         
-            
-            
-            
-            
-            
-            
-            
         }
-        
-        
     }
     
+    // MARK: - Logout User method
     
     @IBAction func logoutUser(_ sender: Any) {
         
-        // get out of firebase
-        try? Auth.auth().signOut()
-        
-        // Go back to login screen via navigationcontroller
-        
+        // UI Update: go back to login screen via dismissing navigationcontroller
         navigationController?.dismiss(animated: true, completion: nil)
+        
+        // need to log out of firebase as well
+        try? Auth.auth().signOut()
         
     }
     
+    // MARK: - Location Manager method
+    
+    // tells the delegate that new location data is available
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // called when there is an update to location
         
-        // Get user's current location
+        // called when there is an update to location
+        // get user's current location
         if let coordinates = manager.location?.coordinate{
             let center = CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)
             let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-            userLocation = center
+            
+            // set region with center and span info and add geographic region to the map
             let region = MKCoordinateRegion(center: center, span: span)
             mapView.setRegion(region, animated: true)
             
-            // Create annotation so we can see where we are!
+            // assign center to userLocation to store location data for future use
+            userLocation = center
+            
+            // map will zoom in on the region but no annotation
+            // create annotation so we can see where the user is
             // remove annotations before setting new ones
-            mapView.removeAnnotations(mapView.annotations)
             let annotation = MKPointAnnotation()
             annotation.coordinate = center
+            
+            // annotation will have a title "Your location"
             annotation.title = "Your location"
             mapView.addAnnotation(annotation)
+            mapView.removeAnnotations(mapView.annotations)
         }
     }
-    
 }
