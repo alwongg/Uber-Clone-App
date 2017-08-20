@@ -29,7 +29,8 @@ class AcceptRequestViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        let region = MKCoordinateRegion(center: requestLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let region = MKCoordinateRegion(center: requestLocation, span: span)
         mapView.setRegion(region, animated: false)
         
         // annotation
@@ -43,24 +44,28 @@ class AcceptRequestViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func acceptRequest(_ sender: Any) {
-        // Update the ride request
         
+        // Update the ride request
         Database.database().reference().child("RideRequests").queryOrdered(byChild: "email").queryEqual(toValue: requestEmail).observe(.childAdded) { (snapshot) in
-            snapshot.ref.updateChildValues(["driverLat":self.driverLocation.latitude, "driverLon":self.driverLocation.longitude])
             
-            //remove observer otherwise it'll keep deleting requests!
+            // send driver location to database
+            snapshot.ref.updateChildValues(["driverLat": self.driverLocation.latitude, "driverLon": self.driverLocation.longitude])
+            
+            // remove observer otherwise it'll keep deleting requests!
             Database.database().reference().child("RideRequests").removeAllObservers()
         }
     
-        // Give directions
+        // give directions
         let requestCLLocation = CLLocation(latitude: requestLocation.latitude, longitude: requestLocation.longitude)
         
+        // search location and opens Apple Maps to get directions to the rider
         CLGeocoder().reverseGeocodeLocation(requestCLLocation) { (placemarks, error) in
             if let placemarks = placemarks {
                 
                 if placemarks.count > 0 {
                     
                     let placeMark = MKPlacemark(placemark: placemarks[0])
+                    
                     let mapItem = MKMapItem(placemark: placeMark)
                     mapItem.name = self.requestEmail
                     

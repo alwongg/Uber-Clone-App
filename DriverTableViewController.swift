@@ -42,8 +42,19 @@ class DriverTableViewController: UITableViewController, CLLocationManagerDelegat
         locationManager.startUpdatingLocation()
         
         Database.database().reference().child("RideRequests").observe(.childAdded) { (snapshot) in
-            self.rideRequests.append(snapshot)
-            self.tableView.reloadData()
+            
+            if let rideRequestsDictionary = snapshot.value as? [String:AnyObject]{
+                if let driverLat = rideRequestsDictionary["driverLat"] as? Double {
+                   
+                    
+                    
+                } else {
+                    
+                    self.rideRequests.append(snapshot)
+                    self.tableView.reloadData()
+                    
+                }
+            }
         }
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
@@ -110,7 +121,6 @@ class DriverTableViewController: UITableViewController, CLLocationManagerDelegat
         return cell
     }
     
-    // things to do after a row has been selected
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // store ride requests in snapshot
@@ -120,7 +130,7 @@ class DriverTableViewController: UITableViewController, CLLocationManagerDelegat
         performSegue(withIdentifier: "acceptSegue", sender: snapshot)
     }
     
-    // REVIEW THIS ASAP
+    // MARK: - Prepare for segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let acceptViewController = segue.destination as? AcceptRequestViewController{
